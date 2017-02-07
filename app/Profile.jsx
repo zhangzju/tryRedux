@@ -13,6 +13,12 @@ class Profile extends React.Component {
         };
         this.likedCallback = this.likedCallback.bind(this);
     }
+    
+    componentDidMount () {
+        setTimeout( ()=> {
+            this.likedCallback();
+        }, 1000)
+    }
 
     likedCallback () {
         let liked = this.state.liked;
