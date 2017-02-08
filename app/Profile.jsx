@@ -1,4 +1,5 @@
 import React, {PropTypes} from 'react';
+import Hobby from "./Hobby"
 
 const propTypes = {
     name: PropTypes.string.isRequired,
@@ -9,7 +10,8 @@ class Profile extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            liked: 0
+            liked: 0,
+            hobbies: ['music', 'rugby']
         };
         this.likedCallback = this.likedCallback.bind(this);
     }
@@ -35,6 +37,10 @@ class Profile extends React.Component {
                 <h2>Age: {this.props.age}</h2>
                 <button onClick={this.likedCallback}>like!</button>
                 <h2>Total liked: {this.state.liked}</h2>
+                <h2>Hobbies:</h2>
+                <ul>
+                    {this.state.hobbies.map((hobby, i)=> <Hobby key={i} hobby={hobby}/>)}
+                </ul>
             </div>
         )
     }
