@@ -14,6 +14,7 @@ class Profile extends React.Component {
             hobbies: ['music', 'rugby']
         };
         this.likedCallback = this.likedCallback.bind(this);
+        this.addHobbyCallback = this.addHobbyCallback.bind(this);
     }
     
     componentDidMount () {
@@ -30,6 +31,21 @@ class Profile extends React.Component {
         });
     }
 
+    addHobbyCallback(){
+        let hobbyInput = this.refs.hobby;
+        let val = hobbyInput.value;
+        if(val) {
+            let hobbies = this.state.hobbies;
+            hobbies = [...hobbies, val];
+
+            this.setState({
+                hobbies
+            }, () => {
+                hobbyInput.value = '';
+            });
+        }
+    }
+
     render () {
         return (
             <div className="profile-component">
@@ -41,6 +57,8 @@ class Profile extends React.Component {
                 <ul>
                     {this.state.hobbies.map((hobby, i)=> <Hobby key={i} hobby={hobby}/>)}
                 </ul>
+                <input type="text" ref="hobby"/>
+                <button onClick={this.addHobbyCallback}>add hobby</button>
             </div>
         )
     }
